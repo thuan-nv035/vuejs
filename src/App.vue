@@ -1,16 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id = "app">
+      <div>{{message || toUpperCase}}</div>
+      <div>{{money }}</div>
+      <div>{{nameOfUser}}</div>
+      <div>{{user.name}}</div>
+      <button @click="increaseNumber()">IncreaseNumber</button>
+      <button @click="decreaseNumber()">DecreaseNumber</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+  },
+  data() {
+    return {
+      money: 10000,
+      message: "hello vietnam",
+      numberCounter: 10,
+      user: {
+        name: "nguyen van thuan",
+        age: 28
+      }
+    }
+  },
+  computed: {
+    nameOfUser() {
+      const {name} = this.user
+      return name
+    }
+  },
+  watch: {
+    numberCounter(newValue, oldValue) {
+      console.log("old value:" + oldValue)
+      console.log("new value:" + newValue)
+    }
+  },
+  methods: {
+    increaseNumber() {
+      this.numberCounter++
+      return this.numberCounter
+    },
+    decreaseNumber() {
+      this.numberCounter--
+      return this.numberCounter
+    }
+  },
+  
 }
 </script>
 
